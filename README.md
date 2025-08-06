@@ -47,3 +47,23 @@ Claude Code on the command line now, which I think will fit my
 I will consider using AI for refactory code changes like above, but
 not yet for generating significant pieces (a whole function or more)
 of new code.
+
+[4 - Claude](https://github.com/cockpit-project/cockpit-machines/blob/e297af6b91207c90a3e72b0b54af8fc99183e15c/test/files/headless-vnc-client.py)
+
+So, Claude.  It's in the terminal and just the chat, and that works
+better for me than the biggish Cursor IDE GUI thing. Otherwise it
+feels exactly the same, probably because Cursor is using the Claude
+models.
+
+I asked it to make me a truly headless VNC client that we can run in
+our test environment. I knew it's possible with some Python modules,
+but Claude did it by implementing the raw VNC protocol from
+scratch. (Only for the initial handshake, which is all we need.)
+
+This we very useful.  I couldn't get it to add working support for
+passwords, however. I think the DES implementation that it added was
+flawed.
+
+I didn't let Claude write the tests, which it was "eager" to
+do. Claude's tests turned out to be very verbose and looked like they
+need significant debugging until they would actually work.
