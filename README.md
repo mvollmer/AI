@@ -147,3 +147,70 @@ I should not expect Claude to provide tested and working code from
 known good sources. The first version must be assumed to be broken and
 I need to iterate and let Claude see test results. But can I let it
 write the tests?
+
+7 - Back at it
+
+[ Time passes ... ]
+
+I felt less external pressure to spend time on AI, so I did less with
+AI for a couple of months and enjoyed the kind of "trad coding" that I
+like.  I made a framework for implementing dialogs and a new file
+chooser dialog as a "functional mockup", for example.
+
+But now it's time to get back into AI and the plan is to learn how
+good it is at porting existing dialogs over to the new framework, and
+how much it can help with turning the functional mockup into a
+production component.
+
+As preparation, I'll tackle two points: Sandboxing of the AI tools
+(finally!), and integration with the Patternfly MCP.
+
+7.1 - Sandboxing
+
+I quickly read a company internal thread about AI sandboxing and there
+seem to be a lot of personal projects involving all the latest
+container tech, in various stages of readiness.  I am certain good
+stuff is happening and I am happy for people to be excited, but I
+don't want to get involved. My company has guidelines for how to use
+AI, but sandboxing is not included yet. Once it is, I'll happily
+follow those.
+
+But for now, I modified my existing development setup a bit: I used to
+mount my whole home directory read/write into a long lived development
+and test VM, but now I only mount the "work/" subdirectory.  Then I
+installed and configured Claude for a account in that VM.  I'll
+exclusively use that account for running claude.
+
+This should hide all my delicious credentials from Claude.  It will
+not be able to push to github in my name, for example.
+
+This is good enough for me.
+
+With that, I let Claude [port a dialog over to the new
+framework](https://github.com/cockpit-project/cockpit/pull/23358).
+That went quite well, probably because there was already extensive
+example code for the framework (and Claude found that all by itself,
+even). Also, refactorings like this are essentialy pattern matching
+and replacing, which AI should be good at. But it also figured out the
+patterns, which is the real timesaver.
+
+There were mistakes of course, and if I had done this by hand it would
+have been only slightly slower I guess, and I would have probably
+found more opportunities for improvement. But Claude needed very
+little hand holding and I could do other stuff on the side. So that's
+a win.
+
+7.2 - Patternfly MCP
+
+I got the hint that Patternfly has a "MCP" server and I have never
+actually used one, so let's configure it.
+
+And that was very easy and I told Claude to "Check all uses of
+Patternfly components for correctness according to patternfly
+documentation." in the cockpit-machines project and it came back with
+only two issues, [which it was also able to fix](https://github.com/cockpit-project/cockpit-machines/pull/2669).
+
+Ok, now I know how to use MCP servers.
+
+(A few days ago I thought that "Agentic AI" and "MCP" are the same
+thing! Can you imagine?)
